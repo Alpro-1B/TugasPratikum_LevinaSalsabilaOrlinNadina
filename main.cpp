@@ -1,38 +1,41 @@
 #include <iostream>
 using namespace std;
 
+// Struktur Node
+struct Node {
+    int data;
+    Node* next;
+};
+
+// Fungsi untuk menambahkan node baru ke linked list
+void insertNode(Node** head, int data) {
+    Node* newNode = new Node;
+    newNode->data = data;
+    newNode->next = *head;
+    *head = newNode;
+}
+
+// Fungsi untuk mencetak linked list
+void printList(Node* head) {
+    Node* current = head;
+    while (current != nullptr) {
+        cout << current->data << " ";
+        current = current->next;
+    }
+    cout << endl;
+}
+
 int main() {
-    //mendeklarasikan variabel-variabel
-    int nilai[100];
-    int i, jumlahbil, biltertinggi;
+    Node* head = nullptr;
 
-    cout << "-------Program Mencari Nilai Tertinggi Dalam Array-------" << endl;
+    // Menambahkan node ke linked list
+    insertNode(&head, 5);
+    insertNode(&head, 10);
+    insertNode(&head, 15);
 
-    //melakukan perintah untuk menginput jumlah bilangan yang diinginkan user
-    cout << "Masukkan jumlah bilangan: ";
-    cin >> jumlahbil;
-    cout << endl;
+    // Mencetak linked list
+    cout << "Linked List: ";
+    printList(head);
 
-    //membaca elemen array
-    for (i = 0; i < jumlahbil; i++)
-    {
-        cout << "Indeks bilangan ke-[" << i << "]= ";
-        cin >> nilai[i];
-    }
-
-    biltertinggi = nilai[0];
-
-    //mencari bilangan tertinggi
-    for (i = 0; i < jumlahbil; i++)
-    {
-        if (biltertinggi < nilai[i])
-        {
-            biltertinggi = nilai[i];
-        }
-    }
-
-    //output atau hasil yang ditampilkan
-    cout << "Bilangan tertinggi adalah: " << biltertinggi;
-    cout << endl;
     return 0;
 }
